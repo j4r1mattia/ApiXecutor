@@ -1,0 +1,63 @@
+{
+  "id": "35f9b19c-043d-4ef0-9a49-b4d75c4471f3",
+  "name": "Devpromoted",
+  "values": [
+    {
+      "key": "x-api-key",
+      "value": "jJuCG7MNKtxqDyJ6k8Py5rwa67KwQWrRYxSUXgjFXejfmNjpnAAvtqPc2GLwGbwNBezsv",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "partnersApiURL",
+      "value": "partnersapi-devpromoted.conte.it/special/partners/partnersapi",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "protocol",
+      "value": "https",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwPcHost",
+      "value": "icigwdevpromoted.admiral.es",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwBcHost",
+      "value": "icigwdevpromoted.admiral.es",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwPcAggrPath",
+      "value": "pcaggr",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwPcPath",
+      "value": "pc",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwBcPath",
+      "value": "bc",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwServletPath",
+      "value": "servlet",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2023-06-20T14:26:57.615Z",
+  "_postman_exported_using": "Postman/10.15.1"
+}

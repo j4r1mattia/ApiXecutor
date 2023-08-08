@@ -1,0 +1,1091 @@
+{
+  "info": {
+    "_postman_id": "447250b6-8166-424f-ad3a-42f749471634",
+    "name": "PartnersAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "16158279"
+  },
+  "item": [
+    {
+      "name": "FastQuote_FPN",
+      "item": [
+        {
+          "name": "Prequote_FastQuote",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Purchaseable Quote true\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.purchaseableQuote).to.eql(true);\r",
+                  "});\r",
+                  "\r",
+                  "var preventivoNumber = pm.response.json().numeroPreventivo;\r",
+                  "pm.globals.set(\"preventivoNumber\", preventivoNumber);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable(\"preventivoNumber\");\r",
+                  "var request = JSON.parse(pm.request.body.raw);\r",
+                  "var producerCode = request.producerCode;\r",
+                  "postman.setGlobalVariable(\"producerCode\", producerCode);\r",
+                  "var aggregatorType = request.aggregatorType;\r",
+                  "postman.setGlobalVariable(\"aggregatorType\", aggregatorType);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "tlsDisabledProtocols": []
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountHolder\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"VICO EQUENSE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00.00+01:00\",\n            \"firstName\": \"MUSSIME\",\n            \"lastName\": \"PIMPA\",\n            \"gender\": \"M\"\n        },\n        \"taxID\": \"PMPMSM63E20H264H\"\n    },\n    \"aggregatorType\": \"501\",\n    \"communicationPrivacyConsent\": false,\n    \"firstPrequoteDeviceType\": \"Desktop\",\n    \"fractionationType\": \"annual\",\n    \"mainDriver\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"VICO EQUENSE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00.00+01:00\",\n            \"firstName\": \"MUSSIME\",\n            \"lastName\": \"PIMPA\",\n            \"gender\": \"M\"\n        },\n        \"taxID\": \"PMPMSM63E20H264H\",\n        \"licenseType\": \"2\",\n        \"gotSons\": false,\n        \"highestMotorcycleDisplacement\": 0,\n        \"maritalStatus\": \"M\",\n        \"monthsMotorcycleExperience\": 0,\n        \"occupation\": \"Impiegato generico\",\n        \"qualification\": \"3\",\n        \"sonsAgeRange\": null\n    },\n    \"metaInformation\": {\n        \"browser\": null,\n        \"deviceUsedToPrequote\": null,\n        \"ip\": null,\n        \"operativeSystem\": null\n    },\n    \"paymentMethod\": \"tradicionalCard\",\n    \"periodStartDate\": \"{{currentDate}}\",\n    \"producerCode\": \"40111922873\",\n    \"vehicle\": {\n        \"averageKMOneYear\": \"10000\",\n        \"bersaniType\": null,\n        \"claims\": [],\n        \"coverageType\": \"ages\",\n        \"cuClass\": 14,\n        \"currentInsuranceSituation\": \"alreadyInsured\",\n        \"cylinderCapacity\": 1685,\n        \"fuelType\": \"D\",\n        \"insuredYears\": \"FOUR\",\n        \"isTelematicsAvailable\": false,\n        \"licensePlateOrigin\": null,\n        \"originalCUClass\": 15,\n        \"plate\": \"SP001FQ\",\n        \"purchasedYear\": 2018,\n        \"registrationDate\": \"2018-09-01T00:00:00+00:00\",\n        \"vehicleType\": \"car\",\n        \"vehicleValue\": 11500,\n        \"vehicleVersion\": \"111140\",\n        \"yearsInCU1\": \"ZERO\",\n        \"youngestLicense\": 20\n    },\n    \"vehicleOwner\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"VICO EQUENSE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00.00+01:00\",\n            \"firstName\": \"MUSSIME\",\n            \"lastName\": \"PIMPA\",\n            \"gender\": \"M\"\n        },\n        \"taxID\": \"PMPMSM63E20H264H\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/prequote",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["prequote"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save_FastQuote",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Got premium\", function () {\r",
+                  "    pm.expect(pm.response.json().saveProposalFlow).to.eql(true);\r",
+                  "});\r",
+                  "\r",
+                  "if(pm.response.json().offerings != null) {\r",
+                  "    var amountByCoverage = pm.response.json().offerings[0].premium.amountByCoverage;\r",
+                  "    for (let i = 0; i < amountByCoverage.length; i++) {\r",
+                  "        console.log(\"Premio: \" + amountByCoverage[i].premium.gross);\r",
+                  "    }\r",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aggregatorType\": \"{{aggregatorType}}\",\n  \"contacts\": {\n      \"emailAddress\": \"loreipsum@gmail.com\",\n      \"homePhone\": \"0255550165\",\n      \"mainCellPhone\": \"0255550165\"\n  },\n  \"coverages\": [\n    {\n      \"coverageCode\": \"A001\",\n      \"coverageTerms\": [\n        {\n          \"coverageTermCode\": \"A001Lim1\",\n          \"coverageTermValue\": \"A001Lim1Op2\",\n          \"isSelected\": true\n        }\n      ],\n      \"isSelected\": true\n    }\n  ],\n  \"metaInformation\": {\n    \"browser\": \"Chrome\",\n    \"ip\": \"87.241.47.190\",\n    \"operativeSystem\": \"Windows\",\n    \"deviceUsedToPrequote\": \"Desktop\"\n  },\n  \"preventivoNumber\": \"{{preventivoNumber}}\",\n  \"producerCode\": \"{{producerCode}}\",\n  \"requestNumber\": \"3433\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/save",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["save"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "No_FastQuote",
+      "item": [
+        {
+          "name": "Prequote_No_FastQuote",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Purchaseable Quote false\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.purchaseableQuote).to.eql(false);\r",
+                  "});\r",
+                  "\r",
+                  "var preventivoNumber = pm.response.json().numeroPreventivo;\r",
+                  "pm.globals.set(\"preventivoNumber\", preventivoNumber);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable(\"preventivoNumber\");\r",
+                  "var request = JSON.parse(pm.request.body.raw);\r",
+                  "var producerCode = request.producerCode;\r",
+                  "postman.setGlobalVariable(\"producerCode\", producerCode);\r",
+                  "var aggregatorType = request.aggregatorType;\r",
+                  "postman.setGlobalVariable(\"aggregatorType\", aggregatorType);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "tlsDisabledProtocols": []
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              },
+              {
+                "warning": "This is a duplicate header and will be overridden by the x-api-key header generated by Postman.",
+                "key": "x-api-key",
+                "value": "dfBxK5rvHSSjEMq88mTKuG4Z4BWX6g95qpu6wg22mLkWX5LgyYVWyz2TdEUVsWyEutAC8",
+                "type": "default"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountHolder\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"VICO EQUENSE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00.00+01:00\",\n            \"firstName\": \"MUSSIME\",\n            \"lastName\": \"PIMPA\",\n            \"gender\": \"M\"\n        },\n        \"taxID\": \"PMPMSM63E20H264H\"\n    },\n    \"aggregatorType\": \"502\",\n    \"communicationPrivacyConsent\": false,\n    \"firstPrequoteDeviceType\": \"Desktop\",\n    \"fractionationType\": \"annual\",\n    \"mainDriver\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"VICO EQUENSE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00.00+01:00\",\n            \"firstName\": \"MUSSIME\",\n            \"lastName\": \"PIMPA\",\n            \"gender\": \"M\"\n        },\n        \"taxID\": \"PMPMSM63E20H264H\",\n        \"licenseType\": \"2\",\n        \"gotSons\": false,\n        \"highestMotorcycleDisplacement\": 0,\n        \"maritalStatus\": \"M\",\n        \"monthsMotorcycleExperience\": 0,\n        \"occupation\": \"Impiegato generico\",\n        \"qualification\": \"3\",\n        \"sonsAgeRange\": null\n    },\n    \"metaInformation\": {\n        \"browser\": null,\n        \"deviceUsedToPrequote\": null,\n        \"ip\": null,\n        \"operativeSystem\": null\n    },\n    \"paymentMethod\": \"tradicionalCard\",\n    \"periodStartDate\": \"{{currentDate}}\",\n    \"producerCode\": \"40111922873\",\n    \"vehicle\": {\n        \"averageKMOneYear\": \"10000\",\n        \"bersaniType\": null,\n        \"claims\": [],\n        \"coverageType\": \"ages\",\n        \"cuClass\": 14,\n        \"currentInsuranceSituation\": \"alreadyInsured\",\n        \"cylinderCapacity\": 1685,\n        \"fuelType\": \"D\",\n        \"insuredYears\": \"FOUR\",\n        \"isTelematicsAvailable\": false,\n        \"licensePlateOrigin\": null,\n        \"originalCUClass\": 15,\n        \"plate\": \"FC123DN\",\n        \"purchasedYear\": 2018,\n        \"registrationDate\": \"2018-09-01T00:00:00+00:00\",\n        \"vehicleType\": \"car\",\n        \"vehicleValue\": 11500,\n        \"vehicleVersion\": \"111140\",\n        \"yearsInCU1\": \"ZERO\",\n        \"youngestLicense\": 20\n    },\n    \"vehicleOwner\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"VICO EQUENSE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00.00+01:00\",\n            \"firstName\": \"MUSSIME\",\n            \"lastName\": \"PIMPA\",\n            \"gender\": \"M\"\n        },\n        \"taxID\": \"PMPMSM63E20H264H\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/prequote",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["prequote"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save_No_FastQuote",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Got premium\", function () {\r",
+                  "    pm.expect(pm.response.json().saveProposalFlow).to.eql(true);\r",
+                  "});\r",
+                  "\r",
+                  "if(pm.response.json().offerings != null) {\r",
+                  "    var amountByCoverage = pm.response.json().offerings[0].premium.amountByCoverage;\r",
+                  "    for (let i = 0; i < amountByCoverage.length; i++) {\r",
+                  "        console.log(\"Premio: \" + amountByCoverage[i].premium.gross);\r",
+                  "    }\r",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "console.log(\"PreventivoNumber: \" + pm.globals.get(\"preventivoNumber\"));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aggregatorType\": \"{{aggregatorType}}\",\n  \"contacts\": {\n      \"emailAddress\": \"loreipsum@gmail.com\",\n      \"homePhone\": \"0255550165\",\n      \"mainCellPhone\": \"0255550165\"\n  },\n  \"coverages\": [\n    {\n      \"coverageCode\": \"A001\",\n      \"coverageTerms\": [\n        {\n          \"coverageTermCode\": \"A001Lim1\",\n          \"coverageTermValue\": \"A001Lim1Op2\",\n          \"isSelected\": true\n        }\n      ],\n      \"isSelected\": true\n    }\n  ],\n  \"metaInformation\": {\n    \"browser\": \"Chrome\",\n    \"ip\": \"87.241.47.190\",\n    \"operativeSystem\": \"Windows\",\n    \"deviceUsedToPrequote\": \"Desktop\"\n  },\n  \"preventivoNumber\": \"{{preventivoNumber}}\",\n  \"producerCode\": \"{{producerCode}}\",\n  \"requestNumber\": \"3433\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/save",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["save"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "HybridQuote_FPN_NPAGGR001",
+      "item": [
+        {
+          "name": "Prequote_NPAGGR001",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Purchaseable Quote false\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.purchaseableQuote).to.eql(false);\r",
+                  "});\r",
+                  "\r",
+                  "var preventivoNumber = pm.response.json().numeroPreventivo;\r",
+                  "pm.globals.set(\"preventivoNumber\", preventivoNumber);\r",
+                  "console.log(\"PreventivoNumber: \" + pm.globals.get(\"preventivoNumber\"));"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable(\"preventivoNumber\");\r",
+                  "var request = JSON.parse(pm.request.body.raw);\r",
+                  "var producerCode = request.producerCode;\r",
+                  "postman.setGlobalVariable(\"producerCode\", producerCode);\r",
+                  "var aggregatorType = request.aggregatorType;\r",
+                  "postman.setGlobalVariable(\"aggregatorType\", aggregatorType);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "tlsDisabledProtocols": []
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountHolder\": {\n         \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\"\n    },\n    \"aggregatorType\": \"501\",\n    \"communicationPrivacyConsent\": false,\n    \"firstPrequoteDeviceType\": \"Desktop\",\n    \"fractionationType\": \"annual\",\n    \"mainDriver\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\",\n        \"licenseType\": \"2\",\n        \"gotSons\": false,\n        \"highestMotorcycleDisplacement\": 0,\n        \"maritalStatus\": \"M\",\n        \"monthsMotorcycleExperience\": 0,\n        \"occupation\": \"Impiegato generico\",\n        \"qualification\": \"3\",\n        \"sonsAgeRange\": null\n    },\n    \"metaInformation\": {\n        \"browser\": null,\n        \"deviceUsedToPrequote\": null,\n        \"ip\": null,\n        \"operativeSystem\": null\n    },\n    \"paymentMethod\": \"tradicionalCard\",\n    \"periodStartDate\": \"{{currentDate}}\",\n    \"producerCode\": \"50100500005\",\n    \"vehicle\": {\n        \"averageKMOneYear\": \"10000\",\n        \"bersaniType\": null,\n        \"claims\": [],\n        \"coverageType\": \"ages\",\n        \"cuClass\": 14,\n        \"currentInsuranceSituation\": \"alreadyInsured\",\n        \"cylinderCapacity\": 1685,\n        \"fuelType\": \"D\",\n        \"insuredYears\": \"FOUR\",\n        \"isTelematicsAvailable\": false,\n        \"licensePlateOrigin\": null,\n        \"originalCUClass\": 15,\n        \"plate\": \"NP001UW\",\n        \"purchasedYear\": 2018,\n        \"registrationDate\": \"2018-09-01T00:00:00+00:00\",\n        \"vehicleType\": \"car\",\n        \"vehicleValue\": 11500,\n        \"vehicleVersion\": \"111140\",\n        \"yearsInCU1\": \"ZERO\",\n        \"youngestLicense\": 20\n    },\n    \"vehicleOwner\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/prequote",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["prequote"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save_NPAGGR001",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "var amountByCoverage = pm.response.json().offerings[0].premium.amountByCoverage;\r",
+                  "for (let i = 0; i < amountByCoverage.length; i++) {\r",
+                  "    console.log(\"Premio: \" + amountByCoverage[i].premium.gross);\r",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "console.log(\"PreventivoNumber: \" + pm.globals.get(\"preventivoNumber\"));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aggregatorType\": \"317\",\n  \"contacts\": {\n      \"emailAddress\": \"loreipsum@gmail.com\",\n      \"homePhone\": \"0255550165\",\n      \"mainCellPhone\": \"0255550165\"\n  },\n  \"coverages\": [\n    {\n      \"coverageCode\": \"A001\",\n      \"coverageTerms\": [\n        {\n          \"coverageTermCode\": \"A001Lim1\",\n          \"coverageTermValue\": \"A001Lim1Op2\",\n          \"isSelected\": true\n        }\n      ],\n      \"isSelected\": true\n    }\n  ],\n  \"metaInformation\": {\n    \"browser\": \"Chrome\",\n    \"ip\": \"87.241.47.190\",\n    \"operativeSystem\": \"Windows\",\n    \"deviceUsedToPrequote\": \"Desktop\"\n  },\n  \"preventivoNumber\": \"{{preventivoNumber}}\",\n  \"producerCode\": \"40111922873\",\n  \"requestNumber\": \"3433\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/save",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["save"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "IndirectFlow_FPN_NP002",
+      "item": [
+        {
+          "name": "Prequote_NP002",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Error CPQ0\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.Code).to.eql(\"[CPQ0]\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable(\"preventivoNumber\");\r",
+                  "var request = JSON.parse(pm.request.body.raw);\r",
+                  "var producerCode = request.producerCode;\r",
+                  "postman.setGlobalVariable(\"producerCode\", producerCode);\r",
+                  "var aggregatorType = request.aggregatorType;\r",
+                  "postman.setGlobalVariable(\"aggregatorType\", aggregatorType);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "tlsDisabledProtocols": []
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountHolder\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\"\n    },\n    \"aggregatorType\": \"500\",\n    \"communicationPrivacyConsent\": false,\n    \"firstPrequoteDeviceType\": \"Desktop\",\n    \"fractionationType\": \"annual\",\n    \"mainDriver\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\",\n        \"licenseType\": \"2\",\n        \"gotSons\": false,\n        \"highestMotorcycleDisplacement\": 0,\n        \"maritalStatus\": \"M\",\n        \"monthsMotorcycleExperience\": 0,\n        \"occupation\": \"Impiegato generico\",\n        \"qualification\": \"3\",\n        \"sonsAgeRange\": null\n    },\n    \"metaInformation\": {\n        \"browser\": null,\n        \"deviceUsedToPrequote\": null,\n        \"ip\": null,\n        \"operativeSystem\": null\n    },\n    \"paymentMethod\": \"tradicionalCard\",\n    \"periodStartDate\": \"{{currentDate}}\",\n    \"producerCode\": \"40111922873\",\n    \"vehicle\": {\n        \"averageKMOneYear\": \"10000\",\n        \"bersaniType\": null,\n        \"claims\": [\n            {\n                \"date\": \"2020-12-12T00:00:00+01:00\",\n                \"responsibility\": \"2\",\n                \"type\": \"1\"\n            },\n            {\n                \"date\": \"2019-12-12T00:00:00+01:00\",\n                \"responsibility\": \"2\",\n                \"type\": \"1\"\n            }\n        ],\n        \"coverageType\": \"ages\",\n        \"cuClass\": 14,\n        \"currentInsuranceSituation\": \"alreadyInsured\",\n        \"cylinderCapacity\": 1685,\n        \"fuelType\": \"D\",\n        \"insuredYears\": \"FOUR\",\n        \"isTelematicsAvailable\": false,\n        \"licensePlateOrigin\": null,\n        \"originalCUClass\": 15,\n        \"plate\": \"FS195ET\",\n        \"purchasedYear\": 2018,\n        \"registrationDate\": \"2018-09-01T00:00:00+00:00\",\n        \"vehicleType\": \"car\",\n        \"vehicleValue\": 11500,\n        \"vehicleVersion\": \"111140\",\n        \"yearsInCU1\": \"ZERO\",\n        \"youngestLicense\": 20\n    },\n    \"vehicleOwner\": {\n          \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/prequote",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["prequote"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "IndirectFlow_FPN_NP003",
+      "item": [
+        {
+          "name": "Prequote_NP003",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Error CPQ0\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.Code).to.eql(\"[CPQ0]\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable(\"preventivoNumber\");\r",
+                  "var request = JSON.parse(pm.request.body.raw);\r",
+                  "var producerCode = request.producerCode;\r",
+                  "postman.setGlobalVariable(\"producerCode\", producerCode);\r",
+                  "var aggregatorType = request.aggregatorType;\r",
+                  "postman.setGlobalVariable(\"aggregatorType\", aggregatorType);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "tlsDisabledProtocols": []
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountHolder\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"QMPMSM63E20H264H\"\n    },\n    \"aggregatorType\": \"500\",\n    \"communicationPrivacyConsent\": false,\n    \"firstPrequoteDeviceType\": \"Desktop\",\n    \"fractionationType\": \"annual\",\n    \"mainDriver\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"QMPMSM63E20H264H\",\n        \"licenseType\": \"2\",\n        \"gotSons\": false,\n        \"highestMotorcycleDisplacement\": 0,\n        \"maritalStatus\": \"M\",\n        \"monthsMotorcycleExperience\": 0,\n        \"occupation\": \"Impiegato generico\",\n        \"qualification\": \"3\",\n        \"sonsAgeRange\": null\n    },\n    \"metaInformation\": {\n        \"browser\": null,\n        \"deviceUsedToPrequote\": null,\n        \"ip\": null,\n        \"operativeSystem\": null\n    },\n    \"paymentMethod\": \"tradicionalCard\",\n    \"periodStartDate\": \"{{currentDate}}\",\n    \"producerCode\": \"50100500005\",\n    \"vehicle\": {\n        \"averageKMOneYear\": \"10000\",\n        \"bersaniType\": null,\n        \"claims\": [],\n        \"coverageType\": \"ages\",\n        \"cuClass\": 14,\n        \"currentInsuranceSituation\": \"alreadyInsured\",\n        \"cylinderCapacity\": 1685,\n        \"fuelType\": \"D\",\n        \"insuredYears\": \"FOUR\",\n        \"isTelematicsAvailable\": false,\n        \"licensePlateOrigin\": null,\n        \"originalCUClass\": 15,\n        \"plate\": \"NP003UW\",\n        \"purchasedYear\": 2018,\n        \"registrationDate\": \"2018-09-01T00:00:00+00:00\",\n        \"vehicleType\": \"car\",\n        \"vehicleValue\": 11500,\n        \"vehicleVersion\": \"111140\",\n        \"yearsInCU1\": \"ZERO\",\n        \"youngestLicense\": 20\n    },\n    \"vehicleOwner\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"QMPMSM63E20H264H\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/prequote",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["prequote"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "IndirectFlow_FPN_NPAGGR007",
+      "item": [
+        {
+          "name": "Prequote_NPAGGR007",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Purchaseable Quote false\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.purchaseableQuote).to.eql(false);\r",
+                  "});\r",
+                  "\r",
+                  "var preventivoNumber = pm.response.json().numeroPreventivo;\r",
+                  "pm.globals.set(\"preventivoNumber\", preventivoNumber);\r",
+                  "console.log(\"PreventivoNumber: \" + pm.globals.get(\"preventivoNumber\"));"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable(\"preventivoNumber\");\r",
+                  "var request = JSON.parse(pm.request.body.raw);\r",
+                  "var producerCode = request.producerCode;\r",
+                  "postman.setGlobalVariable(\"producerCode\", producerCode);\r",
+                  "var aggregatorType = request.aggregatorType;\r",
+                  "postman.setGlobalVariable(\"aggregatorType\", aggregatorType);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "tlsDisabledProtocols": []
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountHolder\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\"\n    },\n    \"aggregatorType\": \"500\",\n    \"communicationPrivacyConsent\": false,\n    \"firstPrequoteDeviceType\": \"Desktop\",\n    \"fractionationType\": \"annual\",\n    \"mainDriver\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\",\n        \"licenseType\": \"2\",\n        \"gotSons\": false,\n        \"highestMotorcycleDisplacement\": 0,\n        \"maritalStatus\": \"M\",\n        \"monthsMotorcycleExperience\": 0,\n        \"occupation\": \"Impiegato generico\",\n        \"qualification\": \"3\",\n        \"sonsAgeRange\": null\n    },\n    \"metaInformation\": {\n        \"browser\": null,\n        \"deviceUsedToPrequote\": null,\n        \"ip\": null,\n        \"operativeSystem\": null\n    },\n    \"paymentMethod\": \"tradicionalCard\",\n    \"periodStartDate\": \"{{currentDate}}\",\n    \"producerCode\": \"50100500005\",\n    \"vehicle\": {\n        \"averageKMOneYear\": \"10000\",\n        \"bersaniType\": null,\n        \"claims\": [],\n        \"coverageType\": \"ages\",\n        \"cuClass\": 14,\n        \"currentInsuranceSituation\": \"alreadyInsured\",\n        \"cylinderCapacity\": 1685,\n        \"fuelType\": \"D\",\n        \"insuredYears\": \"FOUR\",\n        \"isTelematicsAvailable\": false,\n        \"licensePlateOrigin\": null,\n        \"originalCUClass\": 15,\n        \"plate\": \"NP007UW\",\n        \"purchasedYear\": 2018,\n        \"registrationDate\": \"2018-09-01T00:00:00+00:00\",\n        \"vehicleType\": \"car\",\n        \"vehicleValue\": 11500,\n        \"vehicleVersion\": \"111140\",\n        \"yearsInCU1\": \"ZERO\",\n        \"youngestLicense\": 20\n    },\n    \"vehicleOwner\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/prequote",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["prequote"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save_NPAGGR007",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Got premium\", function () {\r",
+                  "    pm.expect(pm.response.json().saveProposalFlow).to.eql(true);\r",
+                  "});\r",
+                  "\r",
+                  "if(pm.response.json().offerings != null) {\r",
+                  "    var amountByCoverage = pm.response.json().offerings[0].premium.amountByCoverage;\r",
+                  "    for (let i = 0; i < amountByCoverage.length; i++) {\r",
+                  "        console.log(\"Premio: \" + amountByCoverage[i].premium.gross);\r",
+                  "    }\r",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "console.log(\"PreventivoNumber: \" + pm.globals.get(\"preventivoNumber\"));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aggregatorType\": \"317\",\n  \"contacts\": {\n      \"emailAddress\": \"loreipsum@gmail.com\",\n      \"homePhone\": \"0255550165\",\n      \"mainCellPhone\": \"0255550165\"\n  },\n  \"coverages\": [\n    {\n      \"coverageCode\": \"A001\",\n      \"coverageTerms\": [\n        {\n          \"coverageTermCode\": \"A001Lim1\",\n          \"coverageTermValue\": \"A001Lim1Op2\",\n          \"isSelected\": true\n        }\n      ],\n      \"isSelected\": true\n    }\n  ],\n  \"metaInformation\": {\n    \"browser\": \"Chrome\",\n    \"ip\": \"87.241.47.190\",\n    \"operativeSystem\": \"Windows\",\n    \"deviceUsedToPrequote\": \"Desktop\"\n  },\n  \"preventivoNumber\": \"{{preventivoNumber}}\",\n  \"producerCode\": \"40111922873\",\n  \"requestNumber\": \"3433\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/save",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["save"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "IndirectFlow_FPN_NPAGGR008",
+      "item": [
+        {
+          "name": "Prequote_NPAGGR008",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Error CPQ0\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.Code).to.eql(\"[CPQ0]\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable(\"preventivoNumber\");\r",
+                  "var request = JSON.parse(pm.request.body.raw);\r",
+                  "var producerCode = request.producerCode;\r",
+                  "postman.setGlobalVariable(\"producerCode\", producerCode);\r",
+                  "var aggregatorType = request.aggregatorType;\r",
+                  "postman.setGlobalVariable(\"aggregatorType\", aggregatorType);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "tlsDisabledProtocols": []
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountHolder\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"TMPMSM63E20H264H\"\n    },\n    \"aggregatorType\": \"500\",\n    \"communicationPrivacyConsent\": false,\n    \"firstPrequoteDeviceType\": \"Desktop\",\n    \"fractionationType\": \"annual\",\n    \"mainDriver\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"TMPMSM63E20H264H\",\n        \"licenseType\": \"2\",\n        \"gotSons\": false,\n        \"highestMotorcycleDisplacement\": 0,\n        \"maritalStatus\": \"M\",\n        \"monthsMotorcycleExperience\": 0,\n        \"occupation\": \"Impiegato generico\",\n        \"qualification\": \"3\",\n        \"sonsAgeRange\": null\n    },\n    \"metaInformation\": {\n        \"browser\": null,\n        \"deviceUsedToPrequote\": null,\n        \"ip\": null,\n        \"operativeSystem\": null\n    },\n    \"paymentMethod\": \"tradicionalCard\",\n    \"periodStartDate\": \"{{currentDate}}\",\n    \"producerCode\": \"50100500005\",\n    \"vehicle\": {\n        \"averageKMOneYear\": \"10000\",\n        \"bersaniType\": null,\n        \"claims\": [],\n        \"coverageType\": \"ages\",\n        \"cuClass\": 14,\n        \"currentInsuranceSituation\": \"alreadyInsured\",\n        \"cylinderCapacity\": 1685,\n        \"fuelType\": \"D\",\n        \"insuredYears\": \"FOUR\",\n        \"isTelematicsAvailable\": false,\n        \"licensePlateOrigin\": null,\n        \"originalCUClass\": 15,\n        \"plate\": \"NP008UW\",\n        \"purchasedYear\": 2018,\n        \"registrationDate\": \"2018-09-01T00:00:00+00:00\",\n        \"vehicleType\": \"car\",\n        \"vehicleValue\": 11500,\n        \"vehicleVersion\": \"111140\",\n        \"yearsInCU1\": \"ZERO\",\n        \"youngestLicense\": 20\n    },\n    \"vehicleOwner\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"VERCELLI\",\n            \"postalCode\": \"13100\",\n            \"provinceOfResidence\": \"VERCELLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"TMPMSM63E20H264H\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/prequote",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["prequote"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "IndirectFlow_FPN_NP013",
+      "item": [
+        {
+          "name": "Prequote_NP013",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Error CPQ0\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.Code).to.eql(\"[CPQ0]\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable(\"preventivoNumber\");\r",
+                  "var request = JSON.parse(pm.request.body.raw);\r",
+                  "var producerCode = request.producerCode;\r",
+                  "postman.setGlobalVariable(\"producerCode\", producerCode);\r",
+                  "var aggregatorType = request.aggregatorType;\r",
+                  "postman.setGlobalVariable(\"aggregatorType\", aggregatorType);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "tlsDisabledProtocols": []
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountHolder\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"AGRIGENTO\",\n            \"postalCode\": \"92100\",\n            \"provinceOfResidence\": \"AGRIGENTO\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"AGRIGENTO\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00+00:00\",\n            \"firstName\": \"Giovanni\",\n            \"lastName\": \"Rossi\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"TMPMSM63E60H264H\"\n    },\n    \"aggregatorType\": \"500\",\n    \"communicationPrivacyConsent\": false,\n    \"firstPrequoteDeviceType\": \"Desktop\",\n    \"fractionationType\": \"annual\",\n    \"mainDriver\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"AGRIGENTO\",\n            \"postalCode\": \"92100\",\n            \"provinceOfResidence\": \"AGRIGENTO\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"AGRIGENTO\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00+00:00\",\n            \"firstName\": \"Giovanni\",\n            \"lastName\": \"Rossi\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"TMPMSM63E60H264H\",\n        \"licenseType\": \"2\",\n        \"gotSons\": false,\n        \"highestMotorcycleDisplacement\": 0,\n        \"maritalStatus\": \"M\",\n        \"monthsMotorcycleExperience\": 0,\n        \"occupation\": \"Impiegato generico\",\n        \"qualification\": \"3\",\n        \"sonsAgeRange\": null\n    },\n    \"metaInformation\": {\n        \"browser\": null,\n        \"deviceUsedToPrequote\": null,\n        \"ip\": null,\n        \"operativeSystem\": null\n    },\n    \"paymentMethod\": \"tradicionalCard\",\n    \"periodStartDate\": \"{{currentDate}}\",\n    \"producerCode\": \"50002300001\",\n    \"vehicle\": {\n        \"averageKMOneYear\": \"10000\",\n        \"bersaniType\": null,\n        \"claims\": [],\n        \"coverageType\": \"ages\",\n        \"cuClass\": 14,\n        \"currentInsuranceSituation\": \"alreadyInsured\",\n        \"cylinderCapacity\": 1685,\n        \"fuelType\": \"D\",\n        \"insuredYears\": \"FOUR\",\n        \"isTelematicsAvailable\": false,\n        \"licensePlateOrigin\": null,\n        \"originalCUClass\": 15,\n        \"plate\": \"EX398AN\",\n        \"purchasedYear\": 2018,\n        \"registrationDate\": \"2018-09-01T00:00:00+00:00\",\n        \"vehicleType\": \"car\",\n        \"vehicleValue\": 11500,\n        \"vehicleVersion\": \"111140\",\n        \"yearsInCU1\": \"ZERO\",\n        \"youngestLicense\": 20\n    },\n    \"vehicleOwner\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"AGRIGENTO\",\n            \"postalCode\": \"92100\",\n            \"provinceOfResidence\": \"AGRIGENTO\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"AGRIGENTO\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1963-05-20T00:00:00+00:00\",\n            \"firstName\": \"Giovanni\",\n            \"lastName\": \"Rossi\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"TMPMSM63E60H264H\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/prequote",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["prequote"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "IndirectFlow_FPN_NP014_blocked",
+      "item": [
+        {
+          "name": "Prequote_NP014_blocked",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Error CPQ0\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.Code).to.eql(\"[CPQ0]\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable(\"preventivoNumber\");\r",
+                  "var request = JSON.parse(pm.request.body.raw);\r",
+                  "var producerCode = request.producerCode;\r",
+                  "postman.setGlobalVariable(\"producerCode\", producerCode);\r",
+                  "var aggregatorType = request.aggregatorType;\r",
+                  "postman.setGlobalVariable(\"aggregatorType\", aggregatorType);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "tlsDisabledProtocols": []
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountHolder\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"NAPOLI\",\n            \"postalCode\": \"80100\",\n            \"provinceOfResidence\": \"NAPOLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\"\n    },\n    \"aggregatorType\": \"500\",\n    \"communicationPrivacyConsent\": false,\n    \"firstPrequoteDeviceType\": \"Desktop\",\n    \"fractionationType\": \"annual\",\n    \"mainDriver\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"NAPOLI\",\n            \"postalCode\": \"80100\",\n            \"provinceOfResidence\": \"NAPOLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\",\n        \"licenseType\": \"2\",\n        \"gotSons\": false,\n        \"highestMotorcycleDisplacement\": 0,\n        \"maritalStatus\": \"M\",\n        \"monthsMotorcycleExperience\": 0,\n        \"occupation\": \"Impiegato generico\",\n        \"qualification\": \"3\",\n        \"sonsAgeRange\": null\n    },\n    \"metaInformation\": {\n        \"browser\": null,\n        \"deviceUsedToPrequote\": null,\n        \"ip\": null,\n        \"operativeSystem\": null\n    },\n    \"paymentMethod\": \"tradicionalCard\",\n    \"periodStartDate\": \"{{currentDate}}\",\n    \"producerCode\": \"50029200001\",\n    \"vehicle\": {\n        \"averageKMOneYear\": \"10000\",\n        \"bersaniType\": null,\n        \"claims\": [],\n        \"coverageType\": \"ages\",\n        \"cuClass\": 14,\n        \"currentInsuranceSituation\": \"alreadyInsured\",\n        \"cylinderCapacity\": 1685,\n        \"fuelType\": \"D\",\n        \"insuredYears\": \"FOUR\",\n        \"isTelematicsAvailable\": false,\n        \"licensePlateOrigin\": null,\n        \"originalCUClass\": 15,\n        \"plate\": \"FS195ET\",\n        \"purchasedYear\": 2018,\n        \"registrationDate\": \"2018-09-01T00:00:00+00:00\",\n        \"vehicleType\": \"car\",\n        \"vehicleValue\": 11500,\n        \"vehicleVersion\": \"111140\",\n        \"yearsInCU1\": \"ZERO\",\n        \"youngestLicense\": 20\n    },\n    \"vehicleOwner\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"NAPOLI\",\n            \"postalCode\": \"80100\",\n            \"provinceOfResidence\": \"NAPOLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/prequote",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["prequote"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "IndirectFlow_FPN_NP014_not_blocked",
+      "item": [
+        {
+          "name": "Prequote_NP014_not_blocked",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Purchaseable Quote false\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.purchaseableQuote).to.eql(false);\r",
+                  "});\r",
+                  "\r",
+                  "var preventivoNumber = pm.response.json().numeroPreventivo;\r",
+                  "pm.globals.set(\"preventivoNumber\", preventivoNumber);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable(\"preventivoNumber\");\r",
+                  "var request = JSON.parse(pm.request.body.raw);\r",
+                  "var producerCode = request.producerCode;\r",
+                  "postman.setGlobalVariable(\"producerCode\", producerCode);\r",
+                  "var aggregatorType = request.aggregatorType;\r",
+                  "postman.setGlobalVariable(\"aggregatorType\", aggregatorType);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "tlsDisabledProtocols": []
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountHolder\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"NAPOLI\",\n            \"postalCode\": \"80100\",\n            \"provinceOfResidence\": \"NAPOLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\"\n    },\n    \"aggregatorType\": \"500\",\n    \"communicationPrivacyConsent\": false,\n    \"firstPrequoteDeviceType\": \"Desktop\",\n    \"fractionationType\": \"annual\",\n    \"mainDriver\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"NAPOLI\",\n            \"postalCode\": \"80100\",\n            \"provinceOfResidence\": \"NAPOLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\",\n        \"licenseType\": \"2\",\n        \"gotSons\": false,\n        \"highestMotorcycleDisplacement\": 0,\n        \"maritalStatus\": \"M\",\n        \"monthsMotorcycleExperience\": 0,\n        \"occupation\": \"Impiegato generico\",\n        \"qualification\": \"3\",\n        \"sonsAgeRange\": null\n    },\n    \"metaInformation\": {\n        \"browser\": null,\n        \"deviceUsedToPrequote\": null,\n        \"ip\": null,\n        \"operativeSystem\": null\n    },\n    \"paymentMethod\": \"tradicionalCard\",\n    \"periodStartDate\": \"{{currentDate}}\",\n    \"producerCode\": \"50050400046\",\n    \"vehicle\": {\n        \"averageKMOneYear\": \"10000\",\n        \"bersaniType\": null,\n        \"claims\": [],\n        \"coverageType\": \"ages\",\n        \"cuClass\": 14,\n        \"currentInsuranceSituation\": \"alreadyInsured\",\n        \"cylinderCapacity\": 1685,\n        \"fuelType\": \"D\",\n        \"insuredYears\": \"FOUR\",\n        \"isTelematicsAvailable\": false,\n        \"licensePlateOrigin\": null,\n        \"originalCUClass\": 15,\n        \"plate\": \"FS195ET\",\n        \"purchasedYear\": 2018,\n        \"registrationDate\": \"2018-09-01T00:00:00+00:00\",\n        \"vehicleType\": \"car\",\n        \"vehicleValue\": 11500,\n        \"vehicleVersion\": \"111140\",\n        \"yearsInCU1\": \"ZERO\",\n        \"youngestLicense\": 20\n    },\n    \"vehicleOwner\": {\n        \"address\": {\n            \"addressLine1\": \"DON ROMOLO MURRI\",\n            \"addressNumber\": \"2\",\n            \"city\": \"NAPOLI\",\n            \"postalCode\": \"80100\",\n            \"provinceOfResidence\": \"NAPOLI\",\n            \"toponym\": \"VIA\"\n        },\n        \"contacts\": {\n            \"emailAddress\": \"511@mail.coverzen.it\",\n            \"homePhone\": \"3384880051\",\n            \"mainCellPhone\": \"3384880051\"\n        },\n        \"personalInfo\": {\n            \"cityOfBirth\": \"GIOIA DEL COLLE\",\n            \"countryOfBirth\": \"IT\",\n            \"dateOfBirth\": \"1974-04-29T00:00:00+00:00\",\n            \"firstName\": \"Lucia\",\n            \"lastName\": \"Lacasella\",\n            \"gender\": \"F\"\n        },\n        \"taxID\": \"LCSLCU74D69E038G\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/prequote",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["prequote"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save_NP014_not_blocked",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Got premium\", function () {\r",
+                  "    pm.expect(pm.response.json().saveProposalFlow).to.eql(true);\r",
+                  "});\r",
+                  "\r",
+                  "if(pm.response.json().offerings != null) {\r",
+                  "    var amountByCoverage = pm.response.json().offerings[0].premium.amountByCoverage;\r",
+                  "    for (let i = 0; i < amountByCoverage.length; i++) {\r",
+                  "        console.log(\"Premio: \" + amountByCoverage[i].premium.gross);\r",
+                  "    }\r",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{x-correlation-id}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aggregatorType\": \"{{aggregatorType}}\",\n  \"contacts\": {\n      \"emailAddress\": \"loreipsum@gmail.com\",\n      \"homePhone\": \"0255550165\",\n      \"mainCellPhone\": \"0255550165\"\n  },\n  \"coverages\": [\n    {\n      \"coverageCode\": \"A001\",\n      \"coverageTerms\": [\n        {\n          \"coverageTermCode\": \"A001Lim1\",\n          \"coverageTermValue\": \"A001Lim1Op2\",\n          \"isSelected\": true\n        }\n      ],\n      \"isSelected\": true\n    }\n  ],\n  \"metaInformation\": {\n    \"browser\": \"Chrome\",\n    \"ip\": \"87.241.47.190\",\n    \"operativeSystem\": \"Windows\",\n    \"deviceUsedToPrequote\": \"Desktop\"\n  },\n  \"preventivoNumber\": \"{{preventivoNumber}}\",\n  \"producerCode\": \"{{producerCode}}\",\n  \"requestNumber\": \"3433\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{partnersApiURL}}/save",
+              "protocol": "{{protocol}}",
+              "host": ["{{partnersApiURL}}"],
+              "path": ["save"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{x-api-key}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "var today = new Date();",
+          "var tomorrow = new Date();",
+          "tomorrow.setDate(today.getDate()+1);",
+          "pm.variables.set(\"currentDate\", tomorrow);"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "currentDate",
+      "value": "{{today}}",
+      "type": "default"
+    },
+    {
+      "key": "baseURL",
+      "value": "localhost:8082",
+      "type": "default"
+    },
+    {
+      "key": "x-correlation-id",
+      "value": "test-01",
+      "type": "default"
+    },
+    {
+      "key": "protocol",
+      "value": "http",
+      "type": "default"
+    }
+  ]
+}

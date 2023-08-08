@@ -1,0 +1,57 @@
+{
+  "id": "ba71630a-ea0f-4be3-8587-16f3b21862b8",
+  "name": "Local",
+  "values": [
+    {
+      "key": "protocol",
+      "value": "http",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "partnersApiURL",
+      "value": "localhost:8082",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwPcHost",
+      "value": "localhost:8180",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwBcHost",
+      "value": "localhost:8580",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwPcAggrPath",
+      "value": "pcaggr",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwPcPath",
+      "value": "pc",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwBcPath",
+      "value": "bc",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwServletPath",
+      "value": "service",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2023-06-20T14:27:06.087Z",
+  "_postman_exported_using": "Postman/10.15.1"
+}

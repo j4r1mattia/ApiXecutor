@@ -1,0 +1,63 @@
+{
+  "id": "003e00dd-6a1a-4425-b4ed-86a6708ef3fa",
+  "name": "Devint",
+  "values": [
+    {
+      "key": "protocol",
+      "value": "https",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "x-api-key",
+      "value": "nBp4twwt9zQQACKhUsrvXf5kS753vQVjTPrYpc7phKwhKt7Pwgac2pLbFq6wTtdAcCSz4",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "partnersApiURL",
+      "value": "partnersapi-devint.conte.it/special/partners/partnersapi",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwPcHost",
+      "value": "icigwdevint.admiral.es",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwBcHost",
+      "value": "icigwdevint.admiral.es",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwPcAggrPath",
+      "value": "pcaggr",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwPcPath",
+      "value": "pc",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwBcPath",
+      "value": "bc",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "gwServletPath",
+      "value": "service",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2023-06-20T14:26:28.570Z",
+  "_postman_exported_using": "Postman/10.15.1"
+}
