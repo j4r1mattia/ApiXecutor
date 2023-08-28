@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "cli-table3": "^0.6.3",
+    "commander": "^11.0.0",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.9.0",
     "eslint-config-standard": "^17.1.0",

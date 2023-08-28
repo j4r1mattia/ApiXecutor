@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import logger from '../lib/logger/logger.js';
 import checkNodeVersion from '../lib/node-version-check/index.js';
 import { Command } from 'commander';
 import pkg from '../package.json' assert { type: 'json' };
