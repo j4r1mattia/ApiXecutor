@@ -1,1 +1,2 @@
-export * from './lib/index.js';
+import apix from './lib/index.js';
+export default apix;

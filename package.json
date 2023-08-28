@@ -1,6 +1,6 @@
 {
   "name": "testautomationapi",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
   "type": "module",
   "main": "index.js",
@@ -13,6 +13,9 @@
     "start": "node index.js",
     "prepare": "husky install"
   },
+  "bin": {
+    "apixc": "./bin/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git@gitlab-ssh.ct.shared.base.aeu.grp:testautomation/testautomationapi.git"
@@ -23,7 +26,8 @@
     "newman": "^5.3.2",
     "newman-reporter-htmlextra": "^1.22.11",
     "pino": "^8.15.0",
-    "postman-collection": "^4.2.0"
+    "postman-collection": "^4.2.0",
+    "semver": "^7.5.4"
   },
   "devDependencies": {
     "cli-table3": "^0.6.3",
