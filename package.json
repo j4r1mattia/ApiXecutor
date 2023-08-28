@@ -10,11 +10,11 @@
   "engineStrict": true,
   "scripts": {
     "test": "node --experimental-vm-modules --test",
-    "start": "node index.js",
+    "start": "node ./bin/index.js",
     "prepare": "husky install"
   },
   "bin": {
-    "apixc": "./bin/index.js"
+    "apix": "./bin/index.js"
   },
   "repository": {
     "type": "git",

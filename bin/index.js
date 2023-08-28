@@ -9,11 +9,9 @@ import apix from '../index.js';
 
 checkNodeVersion();
 
-logger.info('Everything is ok!');
-
 const program = new Command();
 
-program.name('api').version(pkg.version, '-v, --version'); //.addHelpCommand(false);
+program.name('apix').version(pkg.version, '-v, --version'); //.addHelpCommand(false);
 
 program
   .command('run')
