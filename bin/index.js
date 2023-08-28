@@ -2,15 +2,16 @@
 
 import checkNodeVersion from '../lib/node-version-check/index.js';
 import { Command } from 'commander';
-import pkg from '../package.json' assert { type: 'json' };
 import util from './util.js';
 import apix from '../index.js';
+import fs from 'fs/promises';
+const pkg = JSON.parse(await fs.readFile('./package.json', 'utf8'));
 
 checkNodeVersion();
 
 const program = new Command();
 
-program.name('apix').version(pkg.version, '-v, --version'); //.addHelpCommand(false);
+program.name('apix').version(pkg.version, '-v, --version');
 
 program
   .command('run')
