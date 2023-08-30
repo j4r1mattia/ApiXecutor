@@ -9,8 +9,8 @@
   },
   "engineStrict": true,
   "scripts": {
-    "test": "node --experimental-vm-modules --test",
-    "start": "node ./bin/index.js",
+    "test": "set NOLOG=true&& node --experimental-vm-modules --test",
+    "start": "node ./bin/index.js run",
     "prepare": "husky install"
   },
   "bin": {
