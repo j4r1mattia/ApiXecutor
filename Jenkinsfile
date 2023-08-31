@@ -32,12 +32,12 @@ pipeline {
         }
         stage('Install dependencies') {
             steps {
-                sh "npm i"
+                sh "npm i && npm link"
             }
         }
         stage('Run Test') {
             steps {
-                sh "npm start -- -e ${params.environment}"
+                sh "apix run ./collections/ -e ./environments/${params.environment}"
             }
         }
     }
