@@ -8,6 +8,7 @@ pipeline {
     }
     parameters {
         choice choices: ['preprod', 'devpromoted', 'devint', 'special00', 'special01', 'special02', 'special03'], description: 'Choose the environment where the Policy Center you want to test resides', name: 'environment'
+        booleanParam description: 'Run more collections in parallel (max 3)', name: 'parallel'
     }
     stages {
         stage('Clear Old Workspace') {
@@ -31,13 +32,20 @@ pipeline {
             }
         }
         stage('Install dependencies') {
-            steps {
+            steps {  
                 sh "npm i && npm link"
             }
         }
         stage('Run Test') {
             steps {
-                sh "apix run ./collections/ -e ./environments/${params.environment}"
+                script {
+                    if(params.parallel) {
+                        parallel = '--parallel'
+                    } else {
+                        parallel = ''
+                    }
+                }
+                sh "apix run ./collections/ -e ./environments/${params.environment}.json ${parallel}"
             }
         }
     }
